@@ -4,7 +4,9 @@
   "description": "This template is meant to be forked to easily setupa project with webpack, eslint and prettier",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "Yousef Elsisy (https://github.com/CCeph)",
