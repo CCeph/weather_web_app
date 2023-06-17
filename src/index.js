@@ -1,0 +1,1 @@
+console.log("Webpack, ESLint, and Prettier Template");
