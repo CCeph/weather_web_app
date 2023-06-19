@@ -1,1 +1,1 @@
-console.log("weather app");
+import "./dataHandler";
