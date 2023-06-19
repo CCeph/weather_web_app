@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log(\"Webpack, ESLint, and Prettier Template\");\n\n//# sourceURL=webpack://webpack_eslint_prettier_template/./src/index.js?");
+eval("console.log(\"weather app\");\n\n\n//# sourceURL=webpack://webpack_eslint_prettier_template/./src/index.js?");
 
 /***/ })
 
