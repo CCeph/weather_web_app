@@ -1,1 +1,2 @@
 import "./dataHandler";
+import "./inputHandler";

@@ -26,4 +26,4 @@ async function filterDailyWeatherData(data) {
   return filteredData;
 }
 
-filterDailyWeatherData(getDailyWeather("Pris"));
+filterDailyWeatherData(getDailyWeather("Paris"));
