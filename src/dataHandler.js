@@ -21,8 +21,8 @@ async function filterDailyWeatherData(data) {
     currentCondition: currentData.condition,
     hourly: unfilteredData.forecast.forecastday[0].hour,
   };
-  console.log(unfilteredData);
-  console.log(filteredData);
+  // console.log(unfilteredData);
+  // console.log(filteredData);
   return filteredData;
 }
 
