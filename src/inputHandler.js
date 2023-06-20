@@ -20,11 +20,18 @@ async function getLocationSuggestions(searchString) {
     { mode: "cors" }
   );
   const suggestions = await response.json();
+  const filteredSuggestions = [];
+  suggestions.forEach((element) => {
+    const unfilteredAddress = Object.values(element.address);
+    const filteredAddress = unfilteredAddress.join(", ");
+    filteredSuggestions.push(filteredAddress);
+  });
   console.log(suggestions);
+  console.log(filteredSuggestions);
 }
 
 cachedDOM.$location.addEventListener("keydown", () => {
   console.log("Keyed");
 });
 
-getLocationSuggestions("Egypt");
+getLocationSuggestions("USA");
