@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dat
   \*****************************/
 /***/ (() => {
 
-eval("// Cache DOM Elements\nfunction createDOMCache() {\n  const $locationForm = document.getElementById(\"locationForm\");\n  return {\n    $locationForm,\n  };\n}\n\nconst cachedDOM = createDOMCache();\n\n\n//# sourceURL=webpack://webpack_eslint_prettier_template/./src/inputHandler.js?");
+eval("// Cache DOM Elements\nfunction createDOMCache() {\n  const $locationForm = document.getElementById(\"locationForm\");\n  return {\n    $locationForm,\n  };\n}\n\nconst cachedDOM = createDOMCache();\n\ncachedDOM.$locationForm.addEventListener(\"click\", (e) => {\n  e.preventDefault();\n});\n\n\n//# sourceURL=webpack://webpack_eslint_prettier_template/./src/inputHandler.js?");
 
 /***/ })
 

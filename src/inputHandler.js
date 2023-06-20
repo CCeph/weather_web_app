@@ -7,3 +7,7 @@ function createDOMCache() {
 }
 
 const cachedDOM = createDOMCache();
+
+cachedDOM.$locationForm.addEventListener("click", (e) => {
+  e.preventDefault();
+});
