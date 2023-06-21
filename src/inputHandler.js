@@ -2,9 +2,11 @@
 function createDOMCache() {
   const $locationForm = document.getElementById("locationForm");
   const $location = document.getElementById("location");
+  const $autocomplete = document.querySelector("[data-autocomplete]");
   return {
     $locationForm,
     $location,
+    $autocomplete,
   };
 }
 
@@ -45,11 +47,26 @@ async function filterForAddress(suggestionsPromise) {
   }
 }
 
+async function outputAutocomplete(suggestionsPromise) {
+  const container = cachedDOM.$autocomplete;
+  container.innerHTML = "";
+
+  const suggestions = await suggestionsPromise;
+  suggestions.forEach((suggestion) => {
+    const div = document.createElement("div");
+    div.textContent = suggestion;
+    container.appendChild(div);
+  });
+}
+
 cachedDOM.$location.addEventListener("input", () => {
   const locationQuery = cachedDOM.$location.value;
+  const autocomplete = cachedDOM.$autocomplete;
+  autocomplete.innerHTML = "";
   if (locationQuery.length >= 3) {
     const citySuggestions = getCitySuggestions(locationQuery);
     const filteredSuggestions = filterForAddress(citySuggestions);
+    outputAutocomplete(filteredSuggestions);
     console.log(filteredSuggestions);
   }
 });
