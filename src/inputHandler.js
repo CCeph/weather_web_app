@@ -47,7 +47,7 @@ async function filterForAddress(suggestionsPromise) {
 
 cachedDOM.$location.addEventListener("input", () => {
   const locationQuery = cachedDOM.$location.value;
-  if (locationQuery !== "") {
+  if (locationQuery.length >= 3) {
     const citySuggestions = getCitySuggestions(locationQuery);
     const filteredSuggestions = filterForAddress(citySuggestions);
     console.log(filteredSuggestions);
