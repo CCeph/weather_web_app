@@ -16,11 +16,6 @@ cachedDOM.$locationForm.addEventListener("click", (e) => {
 
 async function getCitySuggestions(searchString) {
   try {
-    // Avoids calling the API if the input is empty to avoid error 400.
-    if (searchString === "") {
-      return "Empty search string";
-    }
-
     const response = await fetch(
       `https://api.locationiq.com/v1/autocomplete?key=pk.9c87a186a6a34695dbff71ab9dd7f6bc&q=${searchString}&tag=place:city`,
       { mode: "cors" }
@@ -37,11 +32,6 @@ async function filterForAddress(suggestionsPromise) {
     const suggestions = await suggestionsPromise;
     const filteredSuggestions = [];
 
-    // Handles the case of an empty input value.
-    if (suggestions === "Empty search string") {
-      return filteredSuggestions;
-    }
-
     if (suggestions.error === "Unable to geocode") {
       throw new Error("Invalid city name");
     }
@@ -56,9 +46,12 @@ async function filterForAddress(suggestionsPromise) {
 }
 
 cachedDOM.$location.addEventListener("input", () => {
-  const citySuggestions = getCitySuggestions(cachedDOM.$location.value);
-  const filteredSuggestions = filterForAddress(citySuggestions);
-  console.log(filteredSuggestions);
+  const locationQuery = cachedDOM.$location.value;
+  if (locationQuery !== "") {
+    const citySuggestions = getCitySuggestions(locationQuery);
+    const filteredSuggestions = filterForAddress(citySuggestions);
+    console.log(filteredSuggestions);
+  }
 });
 
 // console.log(filterForAddress(getCitySuggestions("Halifax")));
