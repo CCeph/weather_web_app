@@ -14,7 +14,7 @@ cachedDOM.$locationForm.addEventListener("click", (e) => {
   e.preventDefault();
 });
 
-async function getLocationSuggestions(searchString) {
+async function getCitySuggestions(searchString) {
   try {
     const response = await fetch(
       `https://api.locationiq.com/v1/autocomplete?key=pk.9c87a186a6a34695dbff71ab9dd7f6bc&q=${searchString}&tag=place:city`,
@@ -47,4 +47,4 @@ cachedDOM.$location.addEventListener("keydown", () => {
   console.log("Keyed");
 });
 
-console.log(filterForAddress(getLocationSuggestions("Halifax")));
+console.log(filterForAddress(getCitySuggestions("Halifax")));
