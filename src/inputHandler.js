@@ -44,7 +44,9 @@ async function filterForAddress(suggestionsPromise) {
 }
 
 cachedDOM.$location.addEventListener("keydown", () => {
-  console.log("Keyed");
+  const citySuggestions = getCitySuggestions(cachedDOM.$location.value);
+  const filteredSuggestions = filterForAddress(citySuggestions);
+  console.log(filteredSuggestions);
 });
 
-console.log(filterForAddress(getCitySuggestions("Halifax")));
+// console.log(filterForAddress(getCitySuggestions("Halifax")));
