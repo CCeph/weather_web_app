@@ -15,21 +15,36 @@ cachedDOM.$locationForm.addEventListener("click", (e) => {
 });
 
 async function getLocationSuggestions(searchString) {
-  const response = await fetch(
-    `https://api.locationiq.com/v1/autocomplete?key=pk.9c87a186a6a34695dbff71ab9dd7f6bc&q=${searchString}&tag=place:city`,
-    { mode: "cors" }
-  );
-  const suggestions = await response.json();
-  console.log(suggestions);
-  const filteredSuggestions = [];
-  suggestions.forEach((element) => {
-    filteredSuggestions.push(element.display_address);
-  });
-  console.log(filteredSuggestions);
+  try {
+    const response = await fetch(
+      `https://api.locationiq.com/v1/autocomplete?key=pk.9c87a186a6a34695dbff71ab9dd7f6bc&q=${searchString}&tag=place:city`,
+      { mode: "cors" }
+    );
+    const suggestions = await response.json();
+    return suggestions;
+  } catch (error) {
+    return console.log("Custom", error);
+  }
+}
+
+async function filterForAddress(suggestionsPromise) {
+  try {
+    const suggestions = await suggestionsPromise;
+    if (suggestions.error === "Unable to geocode") {
+      throw new Error("Invalid city name");
+    }
+    const filteredSuggestions = [];
+    suggestions.forEach((element) => {
+      filteredSuggestions.push(element.display_address);
+    });
+    return filteredSuggestions;
+  } catch (error) {
+    return console.log("Custom", error);
+  }
 }
 
 cachedDOM.$location.addEventListener("keydown", () => {
   console.log("Keyed");
 });
 
-getLocationSuggestions("Egypt");
+console.log(filterForAddress(getLocationSuggestions("Halifax")));
