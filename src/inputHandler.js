@@ -22,9 +22,7 @@ async function getLocationSuggestions(searchString) {
   const suggestions = await response.json();
   const filteredSuggestions = [];
   suggestions.forEach((element) => {
-    const unfilteredAddress = Object.values(element.address);
-    const filteredAddress = unfilteredAddress.join(", ");
-    filteredSuggestions.push(filteredAddress);
+    filteredSuggestions.push(element.display_address);
   });
   console.log(suggestions);
   console.log(filteredSuggestions);
