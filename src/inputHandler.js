@@ -53,5 +53,3 @@ cachedDOM.$location.addEventListener("input", () => {
     console.log(filteredSuggestions);
   }
 });
-
-// console.log(filterForAddress(getCitySuggestions("Halifax")));
