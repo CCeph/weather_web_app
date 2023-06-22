@@ -1,3 +1,5 @@
+import PubSub from "pubsub-js";
+
 // Cache DOM Elements
 function createDOMCache() {
   const $locationForm = document.getElementById("locationForm");

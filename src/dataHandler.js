@@ -1,3 +1,5 @@
+import PubSub from "pubsub-js";
+
 async function getDailyWeather(location) {
   const response = await fetch(
     `http://api.weatherapi.com/v1/forecast.json?key=9d7451824d394c3aafd101313230506&q=${location}`,
