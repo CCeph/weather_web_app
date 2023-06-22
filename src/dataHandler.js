@@ -29,12 +29,17 @@ async function filterDailyWeatherData(data) {
   return filteredData;
 }
 
+function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
+  const unfilteredWeatherData = getDailyWeather(locationOfInterest);
+  const filteredWeatherData = filterDailyWeatherData(unfilteredWeatherData);
+  console.log(filteredWeatherData);
+}
+
 filterDailyWeatherData(getDailyWeather("Dubai, Dubai, United Arab Emirates"));
 
 async function filterForAddress(suggestionsPromise) {
   try {
     const suggestions = await suggestionsPromise;
-    console.log(suggestions);
     const filteredSuggestions = [];
 
     if (suggestions.error === "Unable to geocode") {
@@ -61,7 +66,10 @@ function filterForAutocomplete(eventMsg, citySuggestions) {
   const filteredSuggestions = filterForAddress(citySuggestions);
 
   PubSub.publish(pubsubEventNames.outputAutocompleteEvent, filteredSuggestions);
-  console.log(filteredSuggestions);
 }
 
 PubSub.subscribe(pubsubEventNames.filterForAutocomplete, filterForAutocomplete);
+PubSub.subscribe(
+  pubsubEventNames.getWeatherForLocation,
+  showDailyWeatherForLocation
+);

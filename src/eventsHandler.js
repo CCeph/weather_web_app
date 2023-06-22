@@ -1,9 +1,11 @@
 function createPubsubEventNames() {
   const outputAutocompleteEvent = "outputAutocompleteEvent";
   const filterForAutocomplete = "filterForAutocomplete";
+  const getWeatherForLocation = "getWeatherForLocation";
   return {
     outputAutocompleteEvent,
     filterForAutocomplete,
+    getWeatherForLocation,
   };
 }
 

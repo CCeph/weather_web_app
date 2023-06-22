@@ -17,6 +17,9 @@ const cachedDOM = createDOMCache();
 
 cachedDOM.$locationForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  const locationOfInterest = cachedDOM.$location.value;
+  PubSub.publish(pubsubEventNames.getWeatherForLocation, locationOfInterest);
 });
 
 async function getCitySuggestions(searchString) {
