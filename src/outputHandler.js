@@ -13,7 +13,6 @@ const cachedDOM = createDOMCache();
 async function outputAutocomplete(eventMsg, suggestionsPromise) {
   const container = cachedDOM.$autocomplete;
   container.innerHTML = "";
-  console.log("Run?");
 
   const suggestions = await suggestionsPromise;
   suggestions.forEach((suggestion) => {
