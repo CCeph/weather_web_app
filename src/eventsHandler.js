@@ -1,9 +1,9 @@
-import PubSub from "pubsub-js";
-
 function createPubsubEventNames() {
   const outputAutocompleteEvent = "outputAutocompleteEvent";
+  const filterForAutocomplete = "filterForAutocomplete";
   return {
     outputAutocompleteEvent,
+    filterForAutocomplete,
   };
 }
 

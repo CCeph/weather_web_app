@@ -32,36 +32,11 @@ async function getCitySuggestions(searchString) {
   }
 }
 
-async function filterForAddress(suggestionsPromise) {
-  try {
-    const suggestions = await suggestionsPromise;
-    console.log(suggestions);
-    const filteredSuggestions = [];
-
-    if (suggestions.error === "Unable to geocode") {
-      throw new Error("Invalid city name");
-    }
-
-    suggestions.forEach((element) => {
-      filteredSuggestions.push(element.display_address);
-    });
-    return filteredSuggestions;
-  } catch (error) {
-    return console.log("Custom", error);
-  }
-}
-
 const delayedAutocomplete = {
   showAutocomplete(query) {
     const citySuggestions = getCitySuggestions(query);
-    const filteredSuggestions = filterForAddress(citySuggestions);
 
-    PubSub.publish(
-      pubsubEventNames.outputAutocompleteEvent,
-      filteredSuggestions
-    );
-
-    console.log(filteredSuggestions);
+    PubSub.publish(pubsubEventNames.filterForAutocomplete, citySuggestions);
     this.timeoutID = undefined;
   },
 

@@ -30,3 +30,38 @@ async function filterDailyWeatherData(data) {
 }
 
 filterDailyWeatherData(getDailyWeather("Paris"));
+
+async function filterForAddress(suggestionsPromise) {
+  try {
+    const suggestions = await suggestionsPromise;
+    console.log(suggestions);
+    const filteredSuggestions = [];
+
+    if (suggestions.error === "Unable to geocode") {
+      throw new Error("Invalid city name");
+    }
+
+    suggestions.forEach((element) => {
+      const { name, state, country } = element.address;
+      let filteredAddress;
+      if (state === undefined) {
+        filteredAddress = [name, country].join(", ");
+      } else {
+        filteredAddress = [name, state, country].join(", ");
+      }
+      filteredSuggestions.push(filteredAddress);
+    });
+    return filteredSuggestions;
+  } catch (error) {
+    return console.log("Custom", error);
+  }
+}
+
+function filterForAutocomplete(eventMsg, citySuggestions) {
+  const filteredSuggestions = filterForAddress(citySuggestions);
+
+  PubSub.publish(pubsubEventNames.outputAutocompleteEvent, filteredSuggestions);
+  console.log(filteredSuggestions);
+}
+
+PubSub.subscribe(pubsubEventNames.filterForAutocomplete, filterForAutocomplete);
