@@ -29,7 +29,7 @@ async function filterDailyWeatherData(data) {
   return filteredData;
 }
 
-filterDailyWeatherData(getDailyWeather("Paris"));
+filterDailyWeatherData(getDailyWeather("Dubai, Dubai, United Arab Emirates"));
 
 async function filterForAddress(suggestionsPromise) {
   try {
