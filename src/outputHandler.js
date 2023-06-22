@@ -23,5 +23,4 @@ async function outputAutocomplete(eventMsg, suggestionsPromise) {
   });
 }
 
-const outputAutocompleteEvent = "outputAutocompleteEvent";
-PubSub.subscribe(outputAutocompleteEvent, outputAutocomplete);
+PubSub.subscribe(pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);
