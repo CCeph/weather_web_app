@@ -1,4 +1,5 @@
 import PubSub from "pubsub-js";
+import { pubsubEventNames } from "./eventsHandler";
 
 async function getDailyWeather(location) {
   const response = await fetch(

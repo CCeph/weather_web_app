@@ -1,4 +1,5 @@
 import PubSub from "pubsub-js";
+import { pubsubEventNames } from "./eventsHandler";
 
 // Cache DOM Elements
 function createDOMCache() {
@@ -34,6 +35,7 @@ async function getCitySuggestions(searchString) {
 async function filterForAddress(suggestionsPromise) {
   try {
     const suggestions = await suggestionsPromise;
+    console.log(suggestions);
     const filteredSuggestions = [];
 
     if (suggestions.error === "Unable to geocode") {
@@ -53,8 +55,12 @@ const delayedAutocomplete = {
   showAutocomplete(query) {
     const citySuggestions = getCitySuggestions(query);
     const filteredSuggestions = filterForAddress(citySuggestions);
-    const outputAutocompleteEvent = "outputAutocompleteEvent";
-    PubSub.publish(outputAutocompleteEvent, filteredSuggestions);
+
+    PubSub.publish(
+      pubsubEventNames.outputAutocompleteEvent,
+      filteredSuggestions
+    );
+
     console.log(filteredSuggestions);
     this.timeoutID = undefined;
   },
