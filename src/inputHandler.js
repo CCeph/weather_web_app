@@ -49,23 +49,12 @@ async function filterForAddress(suggestionsPromise) {
   }
 }
 
-async function outputAutocomplete(suggestionsPromise) {
-  const container = cachedDOM.$autocomplete;
-  container.innerHTML = "";
-
-  const suggestions = await suggestionsPromise;
-  suggestions.forEach((suggestion) => {
-    const div = document.createElement("div");
-    div.textContent = suggestion;
-    container.appendChild(div);
-  });
-}
-
 const delayedAutocomplete = {
   showAutocomplete(query) {
     const citySuggestions = getCitySuggestions(query);
     const filteredSuggestions = filterForAddress(citySuggestions);
-    outputAutocomplete(filteredSuggestions);
+    const outputAutocompleteEvent = "outputAutocompleteEvent";
+    PubSub.publish(outputAutocompleteEvent, filteredSuggestions);
     console.log(filteredSuggestions);
     this.timeoutID = undefined;
   },
