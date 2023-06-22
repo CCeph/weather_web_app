@@ -61,14 +61,35 @@ async function outputAutocomplete(suggestionsPromise) {
   });
 }
 
+const delayedAutocomplete = {
+  showAutocomplete(query) {
+    const citySuggestions = getCitySuggestions(query);
+    const filteredSuggestions = filterForAddress(citySuggestions);
+    outputAutocomplete(filteredSuggestions);
+    console.log(filteredSuggestions);
+    this.timeoutID = undefined;
+  },
+
+  setup(query) {
+    if (typeof this.timeoutID === "number") {
+      this.cancel();
+    }
+
+    this.timeoutID = setTimeout(() => {
+      this.showAutocomplete(query);
+    }, 1000);
+  },
+
+  cancel() {
+    clearTimeout(this.timeoutID);
+  },
+};
+
 cachedDOM.$location.addEventListener("input", () => {
   const locationQuery = cachedDOM.$location.value;
   const autocomplete = cachedDOM.$autocomplete;
   autocomplete.innerHTML = "";
   if (locationQuery.length >= 3) {
-    const citySuggestions = getCitySuggestions(locationQuery);
-    const filteredSuggestions = filterForAddress(citySuggestions);
-    outputAutocomplete(filteredSuggestions);
-    console.log(filteredSuggestions);
+    delayedAutocomplete.setup(locationQuery);
   }
 });
