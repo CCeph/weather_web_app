@@ -15,6 +15,46 @@ textarea {
   appearance: none;
 }
 
+.home-background {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./resources/weather\ station.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-background > form {
+  border-radius: 10px;
+  width: 500px;
+  height: 200px;
+  background-color: rgb(188, 150, 139, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+form > input {
+  font-size: 1rem;
+  width: 75%;
+  border: 0;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  background-color: rgb(201, 139, 155);
+  color: black;
+}
+
+form > button {
+  border: 0;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
 .autocomplete {
   position: absolute;
+  left: 100%;
+  background-color: aliceblue;
 }
