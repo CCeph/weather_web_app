@@ -1,3 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+fieldset,
+input,
+legend,
+select,
+textarea {
+  appearance: none;
+}
+
 .autocomplete {
   position: absolute;
 }
