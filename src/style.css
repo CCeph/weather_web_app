@@ -40,7 +40,8 @@ textarea {
 form > input {
   font-size: 1rem;
   width: 75%;
-  border: 0;
+  border: 1px solid black;
+  box-shadow: 3px 3px 6px rgb(92, 72, 67);
   border-radius: 4px;
   padding: 0.5rem 0.75rem;
   background-color: rgb(201, 139, 155);
@@ -51,6 +52,9 @@ form > button {
   border: 0;
   border-radius: 4px;
   font-size: 1rem;
+  background-color: #2b093b;
+  padding: 0.5rem 0.75rem;
+  color: white;
 }
 
 .autocomplete {
