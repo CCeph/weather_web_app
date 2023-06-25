@@ -1,3 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+fieldset,
+input,
+legend,
+select,
+textarea {
+  appearance: none;
+}
+
+.body-background {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./resources/firewatch.jpg");
+  background-position: center;
+}
+
 .autocomplete {
   position: absolute;
 }
