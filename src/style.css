@@ -19,7 +19,20 @@ textarea {
   width: 100vw;
   height: 100vh;
   background-image: url("./resources/firewatch.jpg");
+  background-color: #446588;
   background-position: center;
+  display: flex;
+  justify-content: right;
+}
+
+.location-form-wrapper {
+  width: 500px;
+  height: 200px;
+  background-color: #043256;
+  border-radius: 5px;
+  align-self: center;
+  margin-right: 100px;
+  padding: 1rem;
 }
 
 .autocomplete {
