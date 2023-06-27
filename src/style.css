@@ -22,7 +22,7 @@ textarea {
   background-color: #446588;
   background-position: center;
   display: flex;
-  justify-content: right;
+  justify-content: center;
 }
 
 .location-form-wrapper {
@@ -33,6 +33,27 @@ textarea {
   align-self: center;
   margin-right: 100px;
   padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-form-wrapper > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form > input {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  padding: 0.25rem 0.5rem;
+}
+
+form > button {
+  margin: auto;
 }
 
 .autocomplete {
