@@ -18,9 +18,7 @@ textarea {
 .body-background {
   width: 100vw;
   height: 100vh;
-  background-image: url("./resources/firewatch.jpg");
-  background-color: #446588;
-  background-position: center;
+  background-color: #010e1d;
   display: flex;
   justify-content: center;
 }
@@ -34,8 +32,13 @@ textarea {
   margin-right: 100px;
   padding: 1rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.location-form-wrapper h1 {
+  color: white;
 }
 
 #locationForm {
