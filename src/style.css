@@ -101,3 +101,29 @@ textarea {
   opacity: 1;
   pointer-events: auto;
 }
+
+.main-container {
+  position: absolute;
+  justify-self: center;
+  align-self: center;
+  height: clamp(300px, 60%, 640px);
+  width: clamp(500px, 85%, 960px);
+  padding: 0;
+  border: 0 solid transparent;
+  border-radius: 3px;
+  overflow: hidden;
+  background-image: url(./resources/firewatch.jpg);
+  background-size: cover;
+
+  display: flex;
+}
+
+.main-container > .left-panel {
+  flex: 2;
+}
+
+.main-container > .right-panel {
+  flex: auto;
+  background-color: rgba(80, 80, 80, 0.2);
+  backdrop-filter: blur(15px);
+}
