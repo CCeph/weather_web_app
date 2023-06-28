@@ -133,9 +133,12 @@ textarea {
   padding: 0.1rem 1rem;
   padding-left: 3rem;
   color: white;
-  -webkit-text-stroke: 0.2px black;
   /*background-color: rgba(80, 80, 80, 0.2);
   backdrop-filter: blur(10px);*/
+}
+
+h1 sup {
+  font-size: 1rem;
 }
 
 .main-container > .right-panel {
