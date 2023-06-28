@@ -62,7 +62,9 @@ cachedDOM.$location.addEventListener("input", () => {
   const locationQuery = cachedDOM.$location.value;
   const autocomplete = cachedDOM.$autocomplete;
   autocomplete.innerHTML = "";
-  if (locationQuery.length >= 3) {
+  if (locationQuery.length === 0) {
+    PubSub.publish(pubsubEventNames.emptyLocationQuery);
+  } else if (locationQuery.length >= 3) {
     delayedAutocomplete.setup(locationQuery);
   }
 });

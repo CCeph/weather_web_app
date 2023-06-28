@@ -21,6 +21,7 @@ function autoFillLocationInput() {
 async function outputAutocomplete(eventMsg, suggestionsPromise) {
   const container = cachedDOM.$autocomplete;
   container.textContent = "";
+  container.classList.add("active");
 
   const suggestions = await suggestionsPromise;
   suggestions.forEach((suggestion) => {
@@ -31,4 +32,10 @@ async function outputAutocomplete(eventMsg, suggestionsPromise) {
   });
 }
 
+function hideAutocomplete() {
+  cachedDOM.$autocomplete.classList.remove("active");
+}
+
 PubSub.subscribe(pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);
+
+PubSub.subscribe(pubsubEventNames.emptyLocationQuery, hideAutocomplete);

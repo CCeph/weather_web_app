@@ -67,10 +67,17 @@ textarea {
 
 .autocomplete {
   position: absolute;
+  opacity: 0;
+  pointer-events: none;
   top: 100%;
   left: 0px;
   width: 100%;
   border: 1px solid black;
   background-color: silver;
   padding: 0.25rem 0.5rem;
+}
+
+.autocomplete.active {
+  opacity: 1;
+  pointer-events: auto;
 }
