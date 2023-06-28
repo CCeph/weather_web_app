@@ -17,10 +17,12 @@ const cachedDOM = createDOMCache();
 
 cachedDOM.$locationForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  PubSub.publish(pubsubEventNames.removeHomePage);
   const locationOfInterest = cachedDOM.$location.value;
-  PubSub.publish(pubsubEventNames.getWeatherForLocation, locationOfInterest);
+
+  if (locationOfInterest.length >= 3) {
+    PubSub.publish(pubsubEventNames.removeHomePage);
+    PubSub.publish(pubsubEventNames.getWeatherForLocation, locationOfInterest);
+  }
 });
 
 async function getCitySuggestions(searchString) {
