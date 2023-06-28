@@ -17,6 +17,7 @@ textarea {
 
 :root {
   --clickedButtonShadow: inset 0px 0px 3px grey;
+  --searchBarRadius: 6px;
 }
 
 .body-background {
@@ -57,6 +58,7 @@ textarea {
   font-size: 1rem;
   padding: 0.25rem 0.5rem;
   flex: 1;
+  border-radius: var(--searchBarRadius) 0px 0px var(--searchBarRadius);
 }
 
 #locationForm > :is(input, button) {
@@ -67,6 +69,7 @@ textarea {
 
 #locationForm > button[type="submit"] {
   background-color: #f1f1f1;
+  border-radius: 0px var(--searchBarRadius) var(--searchBarRadius) 0px;
 }
 
 #locationForm > button:active {
