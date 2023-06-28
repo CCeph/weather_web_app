@@ -18,6 +18,7 @@ const cachedDOM = createDOMCache();
 cachedDOM.$locationForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  PubSub.publish(pubsubEventNames.removeHomePage);
   const locationOfInterest = cachedDOM.$location.value;
   PubSub.publish(pubsubEventNames.getWeatherForLocation, locationOfInterest);
 });

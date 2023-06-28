@@ -5,9 +5,11 @@ import { pubsubEventNames } from "./eventsHandler";
 function createDOMCache() {
   const $autocomplete = document.querySelector("[data-autocomplete]");
   const $location = document.getElementById("location");
+  const $locationFormWrapper = document.querySelector(".location-form-wrapper");
   return {
     $autocomplete,
     $location,
+    $locationFormWrapper,
   };
 }
 
@@ -36,6 +38,15 @@ function hideAutocomplete() {
   cachedDOM.$autocomplete.classList.remove("active");
 }
 
+const homePage = {
+  remove() {
+    const wrapper = cachedDOM.$locationFormWrapper;
+    wrapper.classList.add("hidden");
+  },
+};
+
 PubSub.subscribe(pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);
 
 PubSub.subscribe(pubsubEventNames.emptyLocationQuery, hideAutocomplete);
+
+PubSub.subscribe(pubsubEventNames.removeHomePage, homePage.remove);

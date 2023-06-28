@@ -3,11 +3,13 @@ function createPubsubEventNames() {
   const filterForAutocomplete = "filterForAutocomplete";
   const getWeatherForLocation = "getWeatherForLocation";
   const emptyLocationQuery = "emptyLocationQuery";
+  const removeHomePage = "removeHomePage";
   return {
     outputAutocompleteEvent,
     filterForAutocomplete,
     getWeatherForLocation,
     emptyLocationQuery,
+    removeHomePage,
   };
 }
 

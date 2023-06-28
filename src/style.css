@@ -18,6 +18,8 @@ textarea {
 :root {
   --clickedButtonShadow: inset 0px 0px 3px grey;
   --searchBarRadius: 6px;
+  --slingShot: cubic-bezier(1, -0.44, 0.45, 0.88);
+  --slideTime: 500ms;
 }
 
 .body-background {
@@ -40,6 +42,13 @@ textarea {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  transition: transform var(--slideTime) var(--slingShot);
+}
+
+.location-form-wrapper.hidden {
+  transform: translateY(-300%);
+  pointer-events: none;
 }
 
 .location-form-wrapper h1 {
