@@ -157,8 +157,9 @@ textarea {
   padding: 1rem;
   padding-left: 3rem;
   color: white;
-  background-color: rgba(80, 80, 80, 0.2);
+  /*background-color: rgba(80, 80, 80, 0.2);
   backdrop-filter: blur(10px);
+  border-radius: 0px 3px 3px 0px;*/
 }
 
 .left-panel :is(h1, h2) {
