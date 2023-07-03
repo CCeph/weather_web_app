@@ -28,6 +28,7 @@ textarea {
   --titleFont: simplifica;
   --regularFont: simplifica;
   --summaryTitleFontSize: 4rem;
+  --subtitleColor: white;
 }
 
 .body-background {
@@ -143,6 +144,7 @@ textarea {
   font-family: var(--titleFont);
   letter-spacing: 0.3rem;
   font-size: 2rem;
+  color: var(--subtitleColor);
 }
 
 .left-panel h1 {
@@ -181,4 +183,19 @@ h1 sup {
   flex: auto;
   background-color: rgba(80, 80, 80, 0.2);
   backdrop-filter: blur(15px);
+}
+
+.right-panel p {
+  color: rgb(207, 207, 207);
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.weather-details > p {
+  display: flex;
 }
