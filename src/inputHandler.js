@@ -6,10 +6,20 @@ function createDOMCache() {
   const $locationForm = document.getElementById("locationForm");
   const $location = document.getElementById("location");
   const $autocomplete = document.querySelector("[data-autocomplete]");
+  const $secondLocationForm = document.querySelector(
+    "[data-secondLocationForm]"
+  );
+  const $secondLocation = document.querySelector("[data-secondLocation]");
+  const $secondAutocomplete = document.querySelector(
+    "[data-secondAutocomplete]"
+  );
   return {
     $locationForm,
     $location,
     $autocomplete,
+    $secondLocationForm,
+    $secondLocation,
+    $secondAutocomplete,
   };
 }
 
@@ -39,20 +49,21 @@ async function getCitySuggestions(searchString) {
 }
 
 const delayedAutocomplete = {
-  showAutocomplete(query) {
+  showAutocomplete(query, autocompleteContainer) {
     const citySuggestions = getCitySuggestions(query);
+    const suggestionsPackage = { citySuggestions, autocompleteContainer };
 
-    PubSub.publish(pubsubEventNames.filterForAutocomplete, citySuggestions);
+    PubSub.publish(pubsubEventNames.filterForAutocomplete, suggestionsPackage);
     this.timeoutID = undefined;
   },
 
-  setup(query) {
+  setup(query, autocompleteContainer) {
     if (typeof this.timeoutID === "number") {
       this.cancel();
     }
 
     this.timeoutID = setTimeout(() => {
-      this.showAutocomplete(query);
+      this.showAutocomplete(query, autocompleteContainer);
     }, 1000);
   },
 
@@ -67,11 +78,15 @@ function enableAutocompleteOnElement(searchBar, autocompleteContainer) {
     const autocomplete = autocompleteContainer;
     autocomplete.innerHTML = "";
     if (locationQuery.length >= 3) {
-      delayedAutocomplete.setup(locationQuery);
+      delayedAutocomplete.setup(locationQuery, autocomplete);
     } else {
-      PubSub.publish(pubsubEventNames.emptyLocationQuery);
+      PubSub.publish(pubsubEventNames.emptyLocationQuery, autocomplete);
     }
   });
 }
 
 enableAutocompleteOnElement(cachedDOM.$location, cachedDOM.$autocomplete);
+enableAutocompleteOnElement(
+  cachedDOM.$secondLocation,
+  cachedDOM.$secondAutocomplete
+);

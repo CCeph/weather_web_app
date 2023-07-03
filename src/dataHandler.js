@@ -62,10 +62,14 @@ async function filterForAddress(suggestionsPromise) {
   }
 }
 
-function filterForAutocomplete(eventMsg, citySuggestions) {
-  const filteredSuggestions = filterForAddress(citySuggestions);
+function filterForAutocomplete(eventMsg, suggestionsPackage) {
+  const { autocompleteContainer } = suggestionsPackage;
+  const filteredSuggestions = filterForAddress(
+    suggestionsPackage.citySuggestions
+  );
+  const outputPackage = { filteredSuggestions, autocompleteContainer };
 
-  PubSub.publish(pubsubEventNames.outputAutocompleteEvent, filteredSuggestions);
+  PubSub.publish(pubsubEventNames.outputAutocompleteEvent, outputPackage);
 }
 
 PubSub.subscribe(pubsubEventNames.filterForAutocomplete, filterForAutocomplete);

@@ -20,12 +20,13 @@ function autoFillLocationInput() {
   cachedDOM.$autocomplete.textContent = "";
 }
 
-async function outputAutocomplete(eventMsg, suggestionsPromise) {
-  const container = cachedDOM.$autocomplete;
+async function outputAutocomplete(eventMsg, outputPackage) {
+  const container = outputPackage.autocompleteContainer;
+  console.log(outputPackage.autocompleteContainer);
   container.textContent = "";
   container.classList.add("active");
 
-  const suggestions = await suggestionsPromise;
+  const suggestions = await outputPackage.filteredSuggestions;
   suggestions.forEach((suggestion) => {
     const div = document.createElement("div");
     div.textContent = suggestion;
@@ -34,8 +35,8 @@ async function outputAutocomplete(eventMsg, suggestionsPromise) {
   });
 }
 
-function hideAutocomplete() {
-  cachedDOM.$autocomplete.classList.remove("active");
+function hideAutocomplete(msg, autocompleteElement) {
+  autocompleteElement.classList.remove("active");
 }
 
 const homePage = {

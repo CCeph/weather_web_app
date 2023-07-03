@@ -108,7 +108,7 @@ textarea {
   padding: 0.25rem 0.5rem;
 }
 
-#location:focus + .autocomplete.active {
+.locations:focus + .autocomplete.active {
   opacity: 1;
   pointer-events: auto;
 }
