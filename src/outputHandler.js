@@ -22,7 +22,6 @@ function autoFillLocationInput() {
 
 async function outputAutocomplete(eventMsg, outputPackage) {
   const container = outputPackage.autocompleteContainer;
-  console.log(outputPackage.autocompleteContainer);
   container.textContent = "";
   container.classList.add("active");
 

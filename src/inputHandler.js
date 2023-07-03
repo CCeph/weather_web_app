@@ -35,6 +35,16 @@ cachedDOM.$locationForm.addEventListener("submit", (e) => {
   }
 });
 
+cachedDOM.$secondLocationForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const locationOfInterest = cachedDOM.$secondLocation.value;
+
+  if (locationOfInterest.length >= 3) {
+    PubSub.publish(pubsubEventNames.removeHomePage);
+    PubSub.publish(pubsubEventNames.getWeatherForLocation, locationOfInterest);
+  }
+});
+
 async function getCitySuggestions(searchString) {
   try {
     const response = await fetch(
