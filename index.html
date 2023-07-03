@@ -16,7 +16,12 @@
     <div class="body-background">
       <div class="location-form-wrapper hidden">
         <h1>Weather Watch</h1>
-        <form id="locationForm" autocomplete="off" method="post">
+        <form
+          class="locationForms"
+          id="locationForm"
+          autocomplete="off"
+          method="post"
+        >
           <input
             type="search"
             name="location"
@@ -38,6 +43,23 @@
           </div>
         </div>
         <div class="right-panel">
+          <form
+            id="secondLocationForm"
+            autocomplete="off"
+            method="post"
+            class="locationForms"
+          >
+            <input
+              type="search"
+              name="location"
+              id="secondLocation"
+              placeholder="Enter a City Name"
+            />
+            <div class="autocomplete" data-secondAutocomplete></div>
+            <button type="submit">
+              <span class="material-symbols-outlined"> search </span>
+            </button>
+          </form>
           <h2>Description</h2>
           <p>Weather Details</p>
         </div>
