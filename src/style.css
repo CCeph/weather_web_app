@@ -64,32 +64,35 @@ textarea {
 }
 
 #locationForm {
+  width: 75%;
+}
+
+.locationForms {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75%;
 }
 
-#locationForm > input {
+.locationForms > input {
   font-size: 1rem;
   padding: 0.25rem 0.5rem;
   flex: 1;
   border-radius: var(--searchBarRadius) 0px 0px var(--searchBarRadius);
 }
 
-#locationForm > :is(input, button) {
+.locationForms > :is(input, button) {
   border: 1px solid black;
   box-shadow: none;
   height: 2rem;
 }
 
-#locationForm > button[type="submit"] {
+.locationForms > button[type="submit"] {
   background-color: #f1f1f1;
   border-radius: 0px var(--searchBarRadius) var(--searchBarRadius) 0px;
 }
 
-#locationForm > button:active {
+.locationForms > button:active {
   box-shadow: var(--clickedButtonShadow);
 }
 
@@ -108,6 +111,10 @@ textarea {
 #location:focus + .autocomplete.active {
   opacity: 1;
   pointer-events: auto;
+}
+
+#secondLocation {
+  width: 85%;
 }
 
 .main-container {
