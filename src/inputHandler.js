@@ -61,13 +61,17 @@ const delayedAutocomplete = {
   },
 };
 
-cachedDOM.$location.addEventListener("input", () => {
-  const locationQuery = cachedDOM.$location.value;
-  const autocomplete = cachedDOM.$autocomplete;
-  autocomplete.innerHTML = "";
-  if (locationQuery.length >= 3) {
-    delayedAutocomplete.setup(locationQuery);
-  } else {
-    PubSub.publish(pubsubEventNames.emptyLocationQuery);
-  }
-});
+function enableAutocompleteOnElement(searchBar, autocompleteContainer) {
+  searchBar.addEventListener("input", () => {
+    const locationQuery = searchBar.value;
+    const autocomplete = autocompleteContainer;
+    autocomplete.innerHTML = "";
+    if (locationQuery.length >= 3) {
+      delayedAutocomplete.setup(locationQuery);
+    } else {
+      PubSub.publish(pubsubEventNames.emptyLocationQuery);
+    }
+  });
+}
+
+enableAutocompleteOnElement(cachedDOM.$location, cachedDOM.$autocomplete);
