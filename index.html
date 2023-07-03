@@ -27,6 +27,7 @@
             name="location"
             id="location"
             placeholder="Enter a City Name"
+            class="locations"
           />
           <div class="autocomplete" data-autocomplete></div>
           <button type="submit">
@@ -48,12 +49,15 @@
             autocomplete="off"
             method="post"
             class="locationForms"
+            data-secondLocationForm
           >
             <input
               type="search"
               name="location"
               id="secondLocation"
               placeholder="Enter a City Name"
+              data-secondLocation
+              class="locations"
             />
             <div class="autocomplete" data-secondAutocomplete></div>
             <button type="submit">
