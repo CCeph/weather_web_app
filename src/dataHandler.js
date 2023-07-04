@@ -25,16 +25,12 @@ async function filterDailyWeatherData(data) {
     currentCondition: currentData.condition,
     hourly: unfilteredData.forecast.forecastday[0].hour,
   };
-  // console.log(unfilteredData);
-  // console.log(filteredData);
   return filteredData;
 }
 
 function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
   const unfilteredWeatherData = getDailyWeather(locationOfInterest);
-  // console.log(unfilteredWeatherData);
   const filteredWeatherData = filterDailyWeatherData(unfilteredWeatherData);
-  console.log(filteredWeatherData);
   PubSub.publish(pubsubEventNames.outputWeather, filteredWeatherData);
 }
 
