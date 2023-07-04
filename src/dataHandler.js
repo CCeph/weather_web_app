@@ -38,8 +38,6 @@ function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
   PubSub.publish(pubsubEventNames.outputWeather, filteredWeatherData);
 }
 
-filterDailyWeatherData(getDailyWeather("Dubai, Dubai, United Arab Emirates"));
-
 async function filterForAddress(suggestionsPromise) {
   try {
     const suggestions = await suggestionsPromise;
