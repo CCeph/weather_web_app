@@ -192,6 +192,8 @@ h1 sup {
 .weather-details {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 80%;
   padding-left: 10%;
   padding-right: 10%;
 }
