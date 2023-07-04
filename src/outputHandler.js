@@ -52,8 +52,8 @@ function hideAutocomplete(msg, autocompleteElement) {
 
 const homePage = {
   remove() {
-    const wrapper = cachedDOM.$locationFormWrapper;
-    wrapper.classList.add("hidden");
+    const homeWrapper = cachedDOM.$locationFormWrapper;
+    homeWrapper.classList.add("hidden");
   },
 };
 

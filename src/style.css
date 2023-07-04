@@ -132,6 +132,12 @@ textarea {
   background-size: cover;
 
   display: flex;
+  transition: transform var(--slideTime) var(--slingShot);
+}
+
+.main-container.hidden {
+  transform: translateY(-300%);
+  pointer-events: none;
 }
 
 .main-container h1 {
