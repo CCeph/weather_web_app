@@ -12,6 +12,7 @@ function createDOMCache() {
   const $minTemp = document.querySelector("[data-minTemp]");
   const $queriedCity = document.querySelector("[data-city]");
   const $queriedCountry = document.querySelector("[data-country]");
+  const $mainContainer = document.querySelector("[data-mainContainer]");
   return {
     $autocomplete,
     $location,
@@ -22,6 +23,7 @@ function createDOMCache() {
     $minTemp,
     $queriedCity,
     $queriedCountry,
+    $mainContainer,
   };
 }
 
@@ -57,6 +59,13 @@ const homePage = {
   },
 };
 
+const mainPage = {
+  show() {
+    const mainContainer = cachedDOM.$mainContainer;
+    mainContainer.classList.remove("hidden");
+  },
+};
+
 async function outputWeather(eventMsg, infoPromise) {
   const weatherInfo = await infoPromise;
 
@@ -77,10 +86,15 @@ async function outputWeather(eventMsg, infoPromise) {
   $queriedCountry.textContent = weatherInfo.country;
 }
 
+function hideHomepage() {
+  homePage.remove();
+  mainPage.show();
+}
+
 PubSub.subscribe(pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);
 
 PubSub.subscribe(pubsubEventNames.emptyLocationQuery, hideAutocomplete);
 
-PubSub.subscribe(pubsubEventNames.removeHomePage, homePage.remove);
+PubSub.subscribe(pubsubEventNames.removeHomePage, hideHomepage);
 
 PubSub.subscribe(pubsubEventNames.outputWeather, outputWeather);
