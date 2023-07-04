@@ -15,6 +15,7 @@ async function filterDailyWeatherData(data) {
   const dayData = unfilteredData.forecast.forecastday[0].day;
   const currentData = unfilteredData.current;
   const filteredData = {
+    currentTemp: currentData.temp_c,
     maxtemp_c: dayData.maxtemp_c,
     maxtemp_f: dayData.maxtemp_f,
     mintemp_c: dayData.mintemp_c,
@@ -31,6 +32,7 @@ async function filterDailyWeatherData(data) {
 
 function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
   const unfilteredWeatherData = getDailyWeather(locationOfInterest);
+  // console.log(unfilteredWeatherData);
   const filteredWeatherData = filterDailyWeatherData(unfilteredWeatherData);
   console.log(filteredWeatherData);
   PubSub.publish(pubsubEventNames.outputWeather, filteredWeatherData);

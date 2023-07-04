@@ -6,10 +6,18 @@ function createDOMCache() {
   const $autocomplete = document.querySelector("[data-autocomplete]");
   const $location = document.getElementById("location");
   const $locationFormWrapper = document.querySelector(".location-form-wrapper");
+  const $currentTemp = document.querySelector("[data-currentTemp");
+  const $feelsLikeTemp = document.querySelector("[data-feelsLike");
+  const $maxTemp = document.querySelector("[data-maxTemp]");
+  const $minTemp = document.querySelector("[data-minTemp]");
   return {
     $autocomplete,
     $location,
     $locationFormWrapper,
+    $currentTemp,
+    $feelsLikeTemp,
+    $maxTemp,
+    $minTemp,
   };
 }
 
@@ -47,6 +55,13 @@ const homePage = {
 
 async function outputWeather(eventMsg, infoPromise) {
   const weatherInfo = await infoPromise;
+
+  const { $currentTemp, $feelsLikeTemp, $maxTemp, $minTemp } = cachedDOM;
+
+  $currentTemp.textContent = weatherInfo.currentTemp;
+  $feelsLikeTemp.textContent = weatherInfo.feelslike_c;
+  $maxTemp.textContent = weatherInfo.maxtemp_c;
+  $minTemp.textContent = weatherInfo.mintemp_c;
 }
 
 PubSub.subscribe(pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);
