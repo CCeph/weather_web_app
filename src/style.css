@@ -198,4 +198,10 @@ h1 sup {
 
 .weather-details > p {
   display: flex;
+  justify-content: space-between;
+}
+
+.weather-details > p > span {
+  color: white;
+  font-weight: bold;
 }
