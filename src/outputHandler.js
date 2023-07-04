@@ -10,6 +10,8 @@ function createDOMCache() {
   const $feelsLikeTemp = document.querySelector("[data-feelsLike");
   const $maxTemp = document.querySelector("[data-maxTemp]");
   const $minTemp = document.querySelector("[data-minTemp]");
+  const $queriedCity = document.querySelector("[data-city]");
+  const $queriedCountry = document.querySelector("[data-country]");
   return {
     $autocomplete,
     $location,
@@ -18,6 +20,8 @@ function createDOMCache() {
     $feelsLikeTemp,
     $maxTemp,
     $minTemp,
+    $queriedCity,
+    $queriedCountry,
   };
 }
 
@@ -56,12 +60,21 @@ const homePage = {
 async function outputWeather(eventMsg, infoPromise) {
   const weatherInfo = await infoPromise;
 
-  const { $currentTemp, $feelsLikeTemp, $maxTemp, $minTemp } = cachedDOM;
+  const {
+    $currentTemp,
+    $feelsLikeTemp,
+    $maxTemp,
+    $minTemp,
+    $queriedCity,
+    $queriedCountry,
+  } = cachedDOM;
 
   $currentTemp.textContent = weatherInfo.currentTemp;
   $feelsLikeTemp.textContent = weatherInfo.feelslike_c;
   $maxTemp.textContent = weatherInfo.maxtemp_c;
   $minTemp.textContent = weatherInfo.mintemp_c;
+  $queriedCity.textContent = weatherInfo.city;
+  $queriedCountry.textContent = weatherInfo.country;
 }
 
 PubSub.subscribe(pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);
