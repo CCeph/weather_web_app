@@ -45,8 +45,14 @@ const homePage = {
   },
 };
 
+async function outputWeather(eventMsg, infoPromise) {
+  const weatherInfo = await infoPromise;
+}
+
 PubSub.subscribe(pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);
 
 PubSub.subscribe(pubsubEventNames.emptyLocationQuery, hideAutocomplete);
 
 PubSub.subscribe(pubsubEventNames.removeHomePage, homePage.remove);
+
+PubSub.subscribe(pubsubEventNames.outputWeather, outputWeather);

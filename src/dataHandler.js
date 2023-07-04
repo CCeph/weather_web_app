@@ -33,6 +33,7 @@ function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
   const unfilteredWeatherData = getDailyWeather(locationOfInterest);
   const filteredWeatherData = filterDailyWeatherData(unfilteredWeatherData);
   console.log(filteredWeatherData);
+  PubSub.publish(pubsubEventNames.outputWeather, filteredWeatherData);
 }
 
 filterDailyWeatherData(getDailyWeather("Dubai, Dubai, United Arab Emirates"));
