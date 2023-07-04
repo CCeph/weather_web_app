@@ -14,6 +14,7 @@ async function filterDailyWeatherData(data) {
   const unfilteredData = await data;
   const dayData = unfilteredData.forecast.forecastday[0].day;
   const currentData = unfilteredData.current;
+  const locationData = unfilteredData.location;
   const filteredData = {
     currentTemp: currentData.temp_c,
     maxtemp_c: dayData.maxtemp_c,
@@ -24,6 +25,8 @@ async function filterDailyWeatherData(data) {
     feelslike_f: currentData.feelslike_f,
     currentCondition: currentData.condition,
     hourly: unfilteredData.forecast.forecastday[0].hour,
+    city: locationData.name,
+    country: locationData.country,
   };
   return filteredData;
 }
