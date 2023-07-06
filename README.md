@@ -14,10 +14,18 @@ The API keys are shown to the public. None of the API keys are worth anything, s
 
 ## Things to Implement
 
-The design of the website.
-
 What happens when a country name is inputted instead of a city name? Eg. Egypt
 Add input validation and styling to the client end.
+
+Fill the content of the second search bar when an autocomplete option is clicked.
+
+Style the autocomplete box and selections.
+
+Unfocus the search bar when a location is searched. (Make sure autocomplete doesn't show)
+
+Add frontend validation to forms.
+
+When search query does not result in a city, then handle the error properly.
 
 ## Credits
 
