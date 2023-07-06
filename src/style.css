@@ -9,6 +9,7 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 button,
@@ -82,6 +83,10 @@ textarea {
   border-radius: var(--searchBarRadius) 0px 0px var(--searchBarRadius);
 }
 
+.locationForms > input:focus {
+  outline: 0px;
+}
+
 .locationForms > :is(input, button) {
   border: 1px solid black;
   box-shadow: none;
@@ -100,18 +105,27 @@ textarea {
 .autocomplete {
   position: absolute;
   opacity: 0;
-  pointer-events: none;
+  /*pointer-events: none;*/
   top: 100%;
   left: 0px;
   width: 100%;
   border: 1px solid black;
   background-color: silver;
-  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
 }
 
 .locations:focus + .autocomplete.active {
   opacity: 1;
   pointer-events: auto;
+  cursor: pointer;
+}
+
+.autocomplete > div {
+  padding: 0.25rem 0.5rem;
+}
+
+.autocomplete > div:hover {
+  background-color: rgb(99, 99, 99);
 }
 
 #secondLocation {
