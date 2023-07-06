@@ -30,8 +30,10 @@ function createDOMCache() {
 const cachedDOM = createDOMCache();
 
 function autoFillLocationInput() {
-  cachedDOM.$location.value = this.textContent;
-  cachedDOM.$autocomplete.textContent = "";
+  const autocompleteContainer = this.parentElement;
+  const searchBar = autocompleteContainer.previousElementSibling;
+  searchBar.value = this.textContent;
+  autocompleteContainer.textContent = "";
 }
 
 async function outputAutocomplete(eventMsg, outputPackage) {
