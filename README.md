@@ -12,6 +12,8 @@ Make a sick website.
 
 The API keys are shown to the public. None of the API keys are worth anything, so it is fine.
 
+When autocomplete options are clicked with a touchpad, they do not fill the search bar because the event does not trigger. It works with a mouse though.
+
 ## Things to Implement
 
 What happens when a country name is inputted instead of a city name? Eg. Egypt
