@@ -19,8 +19,6 @@ When autocomplete options are clicked with a touchpad, they do not fill the sear
 What happens when a country name is inputted instead of a city name? Eg. Egypt
 Add input validation and styling to the client end.
 
-Fill the content of the second search bar when an autocomplete option is clicked.
-
 Style the autocomplete box and selections.
 
 Unfocus the search bar when a location is searched. (Make sure autocomplete doesn't show)
