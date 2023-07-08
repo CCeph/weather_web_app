@@ -21,8 +21,6 @@ Style focused autocomplete box.
 
 Style the autocomplete box and selections.
 
-Unfocus the search bar when a location is searched. (Make sure autocomplete doesn't show)
-
 Add frontend validation to forms.
 
 When search query does not result in a city, then handle the error properly.
