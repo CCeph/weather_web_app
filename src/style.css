@@ -76,21 +76,22 @@ textarea {
   align-items: center;
 }
 
+.locationForms > :is(input, button) {
+  border: 1px solid black;
+  box-shadow: none;
+  height: 2rem;
+}
+
 .locationForms > input {
   font-size: 1rem;
   padding: 0.25rem 0.5rem;
   flex: 1;
   border-radius: var(--searchBarRadius) 0px 0px var(--searchBarRadius);
+  border-right: 0;
 }
 
 .locationForms > input:focus {
   outline: 0px;
-}
-
-.locationForms > :is(input, button) {
-  border: 1px solid black;
-  box-shadow: none;
-  height: 2rem;
 }
 
 .locationForms > button[type="submit"] {
