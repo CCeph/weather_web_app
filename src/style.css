@@ -30,6 +30,7 @@ textarea {
   --regularFont: simplifica;
   --summaryTitleFontSize: 4rem;
   --subtitleColor: white;
+  --searchBarOutlineColor: #3b3b3b;
 }
 
 .body-background {
@@ -87,7 +88,18 @@ textarea {
   padding: 0.25rem 0.5rem;
   flex: 1;
   border-radius: var(--searchBarRadius) 0px 0px var(--searchBarRadius);
-  border-right: 0;
+  border: 1px solid white;
+  border-right: 1px solid black;
+}
+
+#locationForm > input:focus {
+  border: 2px solid var(--searchBarOutlineColor);
+  border-right: 1px solid black;
+}
+
+#locationForm > input:focus + .autocomplete + button {
+  border: 2px solid var(--searchBarOutlineColor);
+  border-left: 0px;
 }
 
 .locationForms > input:focus {
@@ -97,6 +109,8 @@ textarea {
 .locationForms > button[type="submit"] {
   background-color: #f1f1f1;
   border-radius: 0px var(--searchBarRadius) var(--searchBarRadius) 0px;
+  border: 1px solid #f1f1f1;
+  border-left: 0px;
 }
 
 .locationForms > button:active {
