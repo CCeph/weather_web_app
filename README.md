@@ -17,6 +17,8 @@ The API keys are shown to the public. None of the API keys are worth anything, s
 What happens when a country name is inputted instead of a city name? Eg. Egypt
 Add input validation and styling to the client end.
 
+Style focused autocomplete box.
+
 Style the autocomplete box and selections.
 
 Unfocus the search bar when a location is searched. (Make sure autocomplete doesn't show)
