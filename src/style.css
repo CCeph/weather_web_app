@@ -105,7 +105,6 @@ textarea {
 .autocomplete {
   position: absolute;
   opacity: 0;
-  pointer-events: none;
   top: 100%;
   left: 0px;
   width: 100%;
@@ -116,7 +115,6 @@ textarea {
 
 .locations:focus + .autocomplete.active {
   opacity: 1;
-  pointer-events: auto;
   cursor: pointer;
 }
 

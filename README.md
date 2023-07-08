@@ -12,7 +12,7 @@ Make a sick website.
 
 The API keys are shown to the public. None of the API keys are worth anything, so it is fine.
 
-When autocomplete options are clicked, they do not fill the search bar because the event does not trigger.
+When search bar is unfocused, autocomplete is hidden but it can still be clicked once.
 
 ## Things to Implement
 
