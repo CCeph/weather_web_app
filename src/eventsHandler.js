@@ -35,16 +35,31 @@ function createDOMCache() {
 
 const cachedDOM = createDOMCache();
 
-function disableAutocomplete() {
-  if (!(document.activeElement === cachedDOM.location)) {
-    cachedDOM.$autocomplete.style.pointerEvents = "none";
+function disableAutocomplete(searchBar) {
+  const autocomplete = searchBar.nextElementSibling;
+  if (!(document.activeElement === searchBar)) {
+    autocomplete.style.pointerEvents = "none";
   }
 }
 
-cachedDOM.$location.addEventListener("blur", () => {
-  setTimeout(disableAutocomplete, 500);
+cachedDOM.$location.addEventListener("blur", (e) => {
+  setTimeout(() => {
+    disableAutocomplete(e.target);
+  }, 500);
 });
 
-cachedDOM.$location.addEventListener("focus", () => {
-  cachedDOM.$autocomplete.style.pointerEvents = "auto";
+cachedDOM.$secondLocation.addEventListener("blur", (e) => {
+  setTimeout(() => {
+    disableAutocomplete(e.target);
+  }, 500);
+});
+
+cachedDOM.$location.addEventListener("focus", (e) => {
+  const autocomplete = e.target.nextElementSibling;
+  autocomplete.style.pointerEvents = "auto";
+});
+
+cachedDOM.$secondLocation.addEventListener("focus", (e) => {
+  const autocomplete = e.target.nextElementSibling;
+  autocomplete.style.pointerEvents = "auto";
 });
