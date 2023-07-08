@@ -12,8 +12,6 @@ Make a sick website.
 
 The API keys are shown to the public. None of the API keys are worth anything, so it is fine.
 
-When search bar is unfocused, autocomplete is hidden but it can still be clicked once.
-
 ## Things to Implement
 
 What happens when a country name is inputted instead of a city name? Eg. Egypt
