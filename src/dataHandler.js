@@ -2,6 +2,16 @@ import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
 import handleStatusErrors from "./commonUtils";
 
+// Cache DOM Elements
+function createDOMCache() {
+  const $locationForm = document.getElementById("locationForm");
+  return {
+    $locationForm,
+  };
+}
+
+const cachedDOM = createDOMCache();
+
 async function getDailyWeather(location) {
   try {
     const response = await fetch(
@@ -43,8 +53,9 @@ async function filterDailyWeatherData(data) {
   }
 }
 
-async function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
+async function showDailyWeatherForLocation(eventMsg, locationPackage) {
   try {
+    const [locationOfInterest, formOfInterest] = locationPackage;
     const unfilteredWeatherData = await getDailyWeather(locationOfInterest);
     if (unfilteredWeatherData.message) {
       throw Error("Cancelling Weather Search");
@@ -53,6 +64,9 @@ async function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
       unfilteredWeatherData
     );
     PubSub.publish(pubsubEventNames.outputWeather, filteredWeatherData);
+    if (formOfInterest === cachedDOM.$locationForm) {
+      PubSub.publish(pubsubEventNames.removeHomePage);
+    }
   } catch (error) {
     console.log(error);
   }

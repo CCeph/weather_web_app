@@ -34,13 +34,10 @@ function listenToLocationForm(locationForm) {
     const locationOfInterest = searchBar.value;
 
     if (locationOfInterest.length >= 3) {
-      if (locationForm === cachedDOM.$locationForm) {
-        PubSub.publish(pubsubEventNames.removeHomePage);
-      }
-      PubSub.publish(
-        pubsubEventNames.getWeatherForLocation,
-        locationOfInterest
-      );
+      PubSub.publish(pubsubEventNames.getWeatherForLocation, [
+        locationOfInterest,
+        formOfInterest,
+      ]);
     }
   });
 }
