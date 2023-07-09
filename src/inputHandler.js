@@ -1,5 +1,6 @@
 import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
+import wrapIt from "./utils";
 
 // Cache DOM Elements
 function createDOMCache() {
@@ -63,17 +64,30 @@ async function getCitySuggestions(searchString) {
     const suggestions = await response.json();
     return suggestions;
   } catch (error) {
-    return console.log(error);
+    console.log(error);
+    return Error("Cancelling Autocomplete");
   }
 }
 
 const delayedAutocomplete = {
-  showAutocomplete(query, autocompleteContainer) {
-    const citySuggestions = getCitySuggestions(query);
-    const suggestionsPackage = { citySuggestions, autocompleteContainer };
+  async showAutocomplete(query, autocompleteContainer) {
+    try {
+      const citySuggestions = await getCitySuggestions(query);
+      if (citySuggestions.message === "Cancelling Autocomplete") {
+        const error = citySuggestions;
+        throw error;
+      }
+      const suggestionsPackage = { citySuggestions, autocompleteContainer };
 
-    PubSub.publish(pubsubEventNames.filterForAutocomplete, suggestionsPackage);
-    this.timeoutID = undefined;
+      PubSub.publish(
+        pubsubEventNames.filterForAutocomplete,
+        suggestionsPackage
+      );
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.timeoutID = undefined;
+    }
   },
 
   setup(query, autocompleteContainer) {
