@@ -1,6 +1,5 @@
 import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
-import wrapIt from "./utils";
 
 // Cache DOM Elements
 function createDOMCache() {
