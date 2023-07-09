@@ -31,7 +31,9 @@ function listenToLocationForm(locationForm) {
     const locationOfInterest = locationForm.value;
 
     if (locationOfInterest.length >= 3) {
-      PubSub.publish(pubsubEventNames.removeHomePage);
+      if (locationForm === cachedDOM.$locationForm) {
+        PubSub.publish(pubsubEventNames.removeHomePage);
+      }
       PubSub.publish(
         pubsubEventNames.getWeatherForLocation,
         locationOfInterest
