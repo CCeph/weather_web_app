@@ -25,25 +25,23 @@ function createDOMCache() {
 
 const cachedDOM = createDOMCache();
 
-cachedDOM.$locationForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const locationOfInterest = cachedDOM.$location.value;
+function listenToLocationForm(locationForm) {
+  locationForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const locationOfInterest = locationForm.value;
 
-  if (locationOfInterest.length >= 3) {
-    PubSub.publish(pubsubEventNames.removeHomePage);
-    PubSub.publish(pubsubEventNames.getWeatherForLocation, locationOfInterest);
-  }
-});
+    if (locationOfInterest.length >= 3) {
+      PubSub.publish(pubsubEventNames.removeHomePage);
+      PubSub.publish(
+        pubsubEventNames.getWeatherForLocation,
+        locationOfInterest
+      );
+    }
+  });
+}
 
-cachedDOM.$secondLocationForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const locationOfInterest = cachedDOM.$secondLocation.value;
-
-  if (locationOfInterest.length >= 3) {
-    PubSub.publish(pubsubEventNames.removeHomePage);
-    PubSub.publish(pubsubEventNames.getWeatherForLocation, locationOfInterest);
-  }
-});
+listenToLocationForm(cachedDOM.$locationForm);
+listenToLocationForm(cachedDOM.$secondLocationForm);
 
 async function getCitySuggestions(searchString) {
   try {
