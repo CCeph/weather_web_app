@@ -2,12 +2,16 @@ import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
 
 async function getDailyWeather(location) {
-  const response = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=9d7451824d394c3aafd101313230506&q=${location}`,
-    { mode: "cors" }
-  );
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(
+      `http://api.weatherapi.com/v1/forecast.json?key=9d7451824d394c3aafd101313230506&q=${location}`,
+      { mode: "cors" }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function filterDailyWeatherData(data) {
