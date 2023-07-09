@@ -28,7 +28,9 @@ const cachedDOM = createDOMCache();
 function listenToLocationForm(locationForm) {
   locationForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const locationOfInterest = locationForm.value;
+    const formOfInterest = e.target;
+    const searchBar = formOfInterest.elements[0];
+    const locationOfInterest = searchBar.value;
 
     if (locationOfInterest.length >= 3) {
       if (locationForm === cachedDOM.$locationForm) {
