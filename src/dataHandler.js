@@ -1,5 +1,6 @@
 import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
+import handleStatusErrors from "./commonUtils";
 
 async function getDailyWeather(location) {
   try {
