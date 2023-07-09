@@ -1,5 +1,6 @@
 import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
+import handleStatusErrors from "./commonUtils";
 
 // Cache DOM Elements
 function createDOMCache() {
@@ -46,12 +47,6 @@ function listenToLocationForm(locationForm) {
 
 listenToLocationForm(cachedDOM.$locationForm);
 listenToLocationForm(cachedDOM.$secondLocationForm);
-
-function handleStatusErrors(response) {
-  if (!response.ok) {
-    throw Error(response.status);
-  }
-}
 
 async function getCitySuggestions(searchString) {
   try {
