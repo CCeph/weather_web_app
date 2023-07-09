@@ -28,6 +28,9 @@
             id="location"
             placeholder="Enter a City Name"
             class="locations"
+            required
+            max="255"
+            pattern="([A-Za-zÀ-ž, ]){1,255}"
           />
           <div class="autocomplete" data-autocomplete></div>
           <button type="submit">
@@ -61,6 +64,9 @@
               placeholder="Enter a City Name"
               data-secondLocation
               class="locations"
+              required
+              max="255"
+              pattern="([A-Za-zÀ-ž, ]){1,255}"
             />
             <div class="autocomplete" data-secondAutocomplete></div>
             <button type="submit">
