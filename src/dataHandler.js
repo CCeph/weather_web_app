@@ -8,38 +8,54 @@ async function getDailyWeather(location) {
       `http://api.weatherapi.com/v1/forecast.json?key=9d7451824d394c3aafd101313230506&q=${location}`,
       { mode: "cors" }
     );
+    handleStatusErrors(response);
     const data = await response.json();
     return data;
   } catch (error) {
-    return console.log(error);
+    console.log(error);
+    return error;
   }
 }
 
 async function filterDailyWeatherData(data) {
-  const unfilteredData = await data;
-  const dayData = unfilteredData.forecast.forecastday[0].day;
-  const currentData = unfilteredData.current;
-  const locationData = unfilteredData.location;
-  const filteredData = {
-    currentTemp: currentData.temp_c,
-    maxtemp_c: dayData.maxtemp_c,
-    maxtemp_f: dayData.maxtemp_f,
-    mintemp_c: dayData.mintemp_c,
-    mintemp_f: dayData.mintemp_f,
-    feelslike_c: currentData.feelslike_c,
-    feelslike_f: currentData.feelslike_f,
-    currentCondition: currentData.condition,
-    hourly: unfilteredData.forecast.forecastday[0].hour,
-    city: locationData.name,
-    country: locationData.country,
-  };
-  return filteredData;
+  try {
+    const unfilteredData = await data;
+    const dayData = unfilteredData.forecast.forecastday[0].day;
+    const currentData = unfilteredData.current;
+    const locationData = unfilteredData.location;
+    const filteredData = {
+      currentTemp: currentData.temp_c,
+      maxtemp_c: dayData.maxtemp_c,
+      maxtemp_f: dayData.maxtemp_f,
+      mintemp_c: dayData.mintemp_c,
+      mintemp_f: dayData.mintemp_f,
+      feelslike_c: currentData.feelslike_c,
+      feelslike_f: currentData.feelslike_f,
+      currentCondition: currentData.condition,
+      hourly: unfilteredData.forecast.forecastday[0].hour,
+      city: locationData.name,
+      country: locationData.country,
+    };
+    return filteredData;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 }
 
-function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
-  const unfilteredWeatherData = getDailyWeather(locationOfInterest);
-  const filteredWeatherData = filterDailyWeatherData(unfilteredWeatherData);
-  PubSub.publish(pubsubEventNames.outputWeather, filteredWeatherData);
+async function showDailyWeatherForLocation(eventMsg, locationOfInterest) {
+  try {
+    const unfilteredWeatherData = await getDailyWeather(locationOfInterest);
+    if (unfilteredWeatherData.message) {
+      throw Error("Cancelling Weather Search");
+    }
+    const filteredWeatherData = await filterDailyWeatherData(
+      unfilteredWeatherData
+    );
+    PubSub.publish(pubsubEventNames.outputWeather, filteredWeatherData);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function filterForAddress(suggestionsPromise) {
