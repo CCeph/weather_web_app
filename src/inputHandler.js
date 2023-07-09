@@ -45,12 +45,19 @@ function listenToLocationForm(locationForm) {
 listenToLocationForm(cachedDOM.$locationForm);
 listenToLocationForm(cachedDOM.$secondLocationForm);
 
+function handleStatusErrors(response) {
+  if (!response.ok) {
+    throw Error(response.status);
+  }
+}
+
 async function getCitySuggestions(searchString) {
   try {
     const response = await fetch(
       `https://api.locationiq.com/v1/autocomplete?key=pk.9c87a186a6a34695dbff71ab9dd7f6bc&q=${searchString}&tag=place:city`,
       { mode: "cors" }
     );
+    handleStatusErrors(response);
     const suggestions = await response.json();
     return suggestions;
   } catch (error) {
