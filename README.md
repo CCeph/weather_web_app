@@ -22,3 +22,4 @@ When search query does not result in a city, show the user a visible error.
 ## Credits
 
 Home background Image by <a href="https://pixabay.com/users/knipsling-8647595/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3820363">Patrick Grüterich</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3820363">Pixabay</a>
+Sunny day background Photo by Lukas: https://www.pexels.com/photo/sunlight-with-white-clouds-296234/

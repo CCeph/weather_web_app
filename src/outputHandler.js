@@ -1,5 +1,6 @@
 import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
+import sunnyDay from "./resources/sunnyDay.jpg";
 
 // Cache DOM Elements
 function createDOMCache() {
@@ -88,10 +89,27 @@ function editDisplayedWeatherInfo(weatherData) {
   $queriedCountry.textContent = weatherInfo.country;
 }
 
+function editWeatherBackgroundDisplay(weatherInfo) {
+  const backgroundElement = cachedDOM.$mainContainer;
+
+  const isDay = weatherInfo.is_day;
+  const weatherDescription = weatherInfo.currentCondition.text.toLowerCase();
+
+  switch (true) {
+    case isDay === 1 && weatherDescription.includes("sunny"):
+      backgroundElement.style.backgroundImage = `url(${sunnyDay})`;
+      break;
+    default:
+      console.log("No");
+  }
+}
+
 async function outputWeather(eventMsg, infoPromise) {
   const weatherInfo = await infoPromise;
 
   editDisplayedWeatherInfo(weatherInfo);
+
+  editWeatherBackgroundDisplay(weatherInfo);
 }
 
 function hideHomepage() {
