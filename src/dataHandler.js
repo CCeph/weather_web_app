@@ -45,6 +45,7 @@ async function filterDailyWeatherData(data) {
       hourly: unfilteredData.forecast.forecastday[0].hour,
       city: locationData.name,
       country: locationData.country,
+      is_day: currentData.is_day,
     };
     return filteredData;
   } catch (error) {
