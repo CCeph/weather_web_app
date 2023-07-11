@@ -137,7 +137,7 @@ function editWeatherBackgroundDisplay(weatherInfo) {
       addWeatherTheme(weatherThemeElements, "cloudy-night");
       break;
     default:
-      console.log("No");
+      console.log("No matching theme found");
   }
 }
 
