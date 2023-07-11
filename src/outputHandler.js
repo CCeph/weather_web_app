@@ -68,8 +68,8 @@ const mainPage = {
   },
 };
 
-async function outputWeather(eventMsg, infoPromise) {
-  const weatherInfo = await infoPromise;
+function editDisplayedWeatherInfo(weatherData) {
+  const weatherInfo = weatherData;
 
   const {
     $currentTemp,
@@ -86,6 +86,12 @@ async function outputWeather(eventMsg, infoPromise) {
   $minTemp.textContent = weatherInfo.mintemp_c;
   $queriedCity.textContent = weatherInfo.city;
   $queriedCountry.textContent = weatherInfo.country;
+}
+
+async function outputWeather(eventMsg, infoPromise) {
+  const weatherInfo = await infoPromise;
+
+  editDisplayedWeatherInfo(weatherInfo);
 }
 
 function hideHomepage() {
