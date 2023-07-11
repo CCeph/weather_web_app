@@ -105,7 +105,6 @@ function editWeatherBackgroundDisplay(weatherInfo) {
 
   const isDay = weatherInfo.is_day;
   const weatherDescription = weatherInfo.currentCondition.text.toLowerCase();
-  console.log(weatherInfo);
 
   switch (true) {
     case isDay === 1 && weatherDescription.includes("sunny"):
