@@ -105,12 +105,16 @@ function editWeatherBackgroundDisplay(weatherInfo) {
 
   const isDay = weatherInfo.is_day;
   const weatherDescription = weatherInfo.currentCondition.text.toLowerCase();
+  console.log(weatherInfo);
 
   switch (true) {
     case isDay === 1 && weatherDescription.includes("sunny"):
       $mainContainer.style.backgroundImage = `url(${sunnyDay})`;
       $rightPanel.style.backgroundColor = "rgb(15 71 99 / 59%)";
       $secondSearchBar.style.borderBottom = "1px solid #F1F1F1";
+      break;
+
+    case isDay === 0:
       break;
     default:
       console.log("No");
