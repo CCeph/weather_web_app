@@ -269,3 +269,11 @@ h1 sup {
 .main-container.cloudy-night {
   background-image: url("./resources/cloudyNight.jpg");
 }
+
+.main-container.rainy-night {
+  background-image: url("./resources/drizzleNight.jpg");
+}
+
+.main-container.rainy-day {
+  background-image: url("./resources/rainyDay.jpg");
+}

@@ -127,14 +127,28 @@ function editWeatherBackgroundDisplay(weatherInfo) {
 
   const isDay = weatherInfo.is_day;
   const weatherDescription = weatherInfo.currentCondition.text.toLowerCase();
+  console.log(weatherDescription);
 
   switch (true) {
-    case isDay === 1 && weatherDescription.includes("sunny"):
+    case isDay === 1 &&
+      (weatherDescription.includes("sunny") ||
+        weatherDescription.includes("clear")):
       addWeatherTheme(weatherThemeElements, "sunny-day");
+      break;
+
+    case isDay === 1 &&
+      (weatherDescription.includes("rainy") ||
+        weatherDescription.includes("drizzle")):
+      addWeatherTheme(weatherThemeElements, "rainy-day");
       break;
 
     case isDay === 0:
       addWeatherTheme(weatherThemeElements, "cloudy-night");
+      break;
+    case isDay === 0 &&
+      (weatherDescription.includes("rain") ||
+        weatherDescription.includes("drizzle")):
+      addWeatherTheme(weatherThemeElements, "rainy-night");
       break;
     default:
       console.log("No matching theme found");
