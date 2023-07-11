@@ -251,3 +251,21 @@ h1 sup {
   color: white;
   font-weight: bold;
 }
+
+/* Themes */
+
+.main-container.sunny-day {
+  background-image: url("./resources/sunnyDay.jpg");
+}
+
+.right-panel.sunny-day {
+  background-color: rgb(15 71 99 / 59%);
+}
+
+#secondLocation.sunny-day {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.main-container.cloudy-night {
+  background-image: url("./resources/cloudyNight.jpg");
+}

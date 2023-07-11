@@ -1,7 +1,5 @@
 import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
-import sunnyDay from "./resources/sunnyDay.jpg";
-import cloudyNight from "./resources/cloudyNight.jpg";
 
 // Cache DOM Elements
 function createDOMCache() {
@@ -96,6 +94,20 @@ function editDisplayedWeatherInfo(weatherData) {
   $queriedCountry.textContent = weatherInfo.country;
 }
 
+function removeCurrentWeatherTheme(themeElementsArray) {
+  themeElementsArray.forEach((element) => {
+    element.classList.remove("sunny-day");
+    element.classList.remove("cloudy-night");
+    element.classList.remove("night");
+  });
+}
+
+function addWeatherTheme(themeElementsArray, themeClass) {
+  themeElementsArray.forEach((element) => {
+    element.classList.add(themeClass);
+  });
+}
+
 function editWeatherBackgroundDisplay(weatherInfo) {
   const {
     $mainContainer,
@@ -104,18 +116,25 @@ function editWeatherBackgroundDisplay(weatherInfo) {
     $secondSearchBar,
   } = cachedDOM;
 
+  const weatherThemeElements = [
+    $mainContainer,
+    $backgroundContainer,
+    $rightPanel,
+    $secondSearchBar,
+  ];
+
+  removeCurrentWeatherTheme(weatherThemeElements);
+
   const isDay = weatherInfo.is_day;
   const weatherDescription = weatherInfo.currentCondition.text.toLowerCase();
 
   switch (true) {
     case isDay === 1 && weatherDescription.includes("sunny"):
-      $mainContainer.style.backgroundImage = `url(${sunnyDay})`;
-      $rightPanel.style.backgroundColor = "rgb(15 71 99 / 59%)";
-      $secondSearchBar.style.borderBottom = "1px solid #F1F1F1";
+      addWeatherTheme(weatherThemeElements, "sunny-day");
       break;
 
     case isDay === 0:
-      $mainContainer.style.backgroundImage = `url(${cloudyNight})`;
+      addWeatherTheme(weatherThemeElements, "cloudy-night");
       break;
     default:
       console.log("No");
