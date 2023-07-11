@@ -81,7 +81,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pubs
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pubsub_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pubsub-js */ \"./node_modules/pubsub-js/src/pubsub.js\");\n/* harmony import */ var pubsub_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pubsub_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _eventsHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventsHandler */ \"./src/eventsHandler.js\");\n\n\n\n// Cache DOM Elements\nfunction createDOMCache() {\n  const $autocomplete = document.querySelector(\"[data-autocomplete]\");\n  const $location = document.getElementById(\"location\");\n  const $locationFormWrapper = document.querySelector(\".location-form-wrapper\");\n  const $currentTemp = document.querySelector(\"[data-currentTemp\");\n  const $feelsLikeTemp = document.querySelector(\"[data-feelsLike\");\n  const $maxTemp = document.querySelector(\"[data-maxTemp]\");\n  const $minTemp = document.querySelector(\"[data-minTemp]\");\n  const $queriedCity = document.querySelector(\"[data-city]\");\n  const $queriedCountry = document.querySelector(\"[data-country]\");\n  const $mainContainer = document.querySelector(\"[data-mainContainer]\");\n  return {\n    $autocomplete,\n    $location,\n    $locationFormWrapper,\n    $currentTemp,\n    $feelsLikeTemp,\n    $maxTemp,\n    $minTemp,\n    $queriedCity,\n    $queriedCountry,\n    $mainContainer,\n  };\n}\n\nconst cachedDOM = createDOMCache();\n\nfunction autoFillLocationInput() {\n  const autocompleteContainer = this.parentElement;\n  const searchBar = autocompleteContainer.previousElementSibling;\n  searchBar.value = this.textContent;\n  autocompleteContainer.textContent = \"\";\n}\n\nasync function outputAutocomplete(eventMsg, outputPackage) {\n  const container = outputPackage.autocompleteContainer;\n  container.textContent = \"\";\n  container.classList.add(\"active\");\n\n  const suggestions = await outputPackage.filteredSuggestions;\n  suggestions.forEach((suggestion) => {\n    const div = document.createElement(\"div\");\n    div.textContent = suggestion;\n    div.addEventListener(\"click\", autoFillLocationInput);\n    container.appendChild(div);\n  });\n}\n\nfunction hideAutocomplete(msg, autocompleteElement) {\n  autocompleteElement.classList.remove(\"active\");\n}\n\nconst homePage = {\n  remove() {\n    const homeWrapper = cachedDOM.$locationFormWrapper;\n    homeWrapper.classList.add(\"hidden\");\n  },\n};\n\nconst mainPage = {\n  show() {\n    const mainContainer = cachedDOM.$mainContainer;\n    mainContainer.classList.remove(\"hidden\");\n  },\n};\n\nfunction editDisplayedWeatherInfo(weatherData) {\n  const weatherInfo = weatherData;\n\n  const {\n    $currentTemp,\n    $feelsLikeTemp,\n    $maxTemp,\n    $minTemp,\n    $queriedCity,\n    $queriedCountry,\n  } = cachedDOM;\n\n  $currentTemp.textContent = weatherInfo.currentTemp;\n  $feelsLikeTemp.textContent = weatherInfo.feelslike_c;\n  $maxTemp.textContent = weatherInfo.maxtemp_c;\n  $minTemp.textContent = weatherInfo.mintemp_c;\n  $queriedCity.textContent = weatherInfo.city;\n  $queriedCountry.textContent = weatherInfo.country;\n}\n\nasync function outputWeather(eventMsg, infoPromise) {\n  const weatherInfo = await infoPromise;\n\n  editDisplayedWeatherInfo(weatherInfo);\n}\n\nfunction hideHomepage() {\n  homePage.remove();\n  mainPage.show();\n}\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.emptyLocationQuery, hideAutocomplete);\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.removeHomePage, hideHomepage);\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.outputWeather, outputWeather);\n\n\n//# sourceURL=webpack://webpack_eslint_prettier_template/./src/outputHandler.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pubsub_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pubsub-js */ \"./node_modules/pubsub-js/src/pubsub.js\");\n/* harmony import */ var pubsub_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pubsub_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _eventsHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventsHandler */ \"./src/eventsHandler.js\");\n/* harmony import */ var _resources_sunnyDay_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resources/sunnyDay.jpg */ \"./src/resources/sunnyDay.jpg\");\n\n\n\n\n// Cache DOM Elements\nfunction createDOMCache() {\n  const $autocomplete = document.querySelector(\"[data-autocomplete]\");\n  const $location = document.getElementById(\"location\");\n  const $locationFormWrapper = document.querySelector(\".location-form-wrapper\");\n  const $currentTemp = document.querySelector(\"[data-currentTemp\");\n  const $feelsLikeTemp = document.querySelector(\"[data-feelsLike\");\n  const $maxTemp = document.querySelector(\"[data-maxTemp]\");\n  const $minTemp = document.querySelector(\"[data-minTemp]\");\n  const $queriedCity = document.querySelector(\"[data-city]\");\n  const $queriedCountry = document.querySelector(\"[data-country]\");\n  const $mainContainer = document.querySelector(\"[data-mainContainer]\");\n  return {\n    $autocomplete,\n    $location,\n    $locationFormWrapper,\n    $currentTemp,\n    $feelsLikeTemp,\n    $maxTemp,\n    $minTemp,\n    $queriedCity,\n    $queriedCountry,\n    $mainContainer,\n  };\n}\n\nconst cachedDOM = createDOMCache();\n\nfunction autoFillLocationInput() {\n  const autocompleteContainer = this.parentElement;\n  const searchBar = autocompleteContainer.previousElementSibling;\n  searchBar.value = this.textContent;\n  autocompleteContainer.textContent = \"\";\n}\n\nasync function outputAutocomplete(eventMsg, outputPackage) {\n  const container = outputPackage.autocompleteContainer;\n  container.textContent = \"\";\n  container.classList.add(\"active\");\n\n  const suggestions = await outputPackage.filteredSuggestions;\n  suggestions.forEach((suggestion) => {\n    const div = document.createElement(\"div\");\n    div.textContent = suggestion;\n    div.addEventListener(\"click\", autoFillLocationInput);\n    container.appendChild(div);\n  });\n}\n\nfunction hideAutocomplete(msg, autocompleteElement) {\n  autocompleteElement.classList.remove(\"active\");\n}\n\nconst homePage = {\n  remove() {\n    const homeWrapper = cachedDOM.$locationFormWrapper;\n    homeWrapper.classList.add(\"hidden\");\n  },\n};\n\nconst mainPage = {\n  show() {\n    const mainContainer = cachedDOM.$mainContainer;\n    mainContainer.classList.remove(\"hidden\");\n  },\n};\n\nfunction editDisplayedWeatherInfo(weatherData) {\n  const weatherInfo = weatherData;\n\n  const {\n    $currentTemp,\n    $feelsLikeTemp,\n    $maxTemp,\n    $minTemp,\n    $queriedCity,\n    $queriedCountry,\n  } = cachedDOM;\n\n  $currentTemp.textContent = weatherInfo.currentTemp;\n  $feelsLikeTemp.textContent = weatherInfo.feelslike_c;\n  $maxTemp.textContent = weatherInfo.maxtemp_c;\n  $minTemp.textContent = weatherInfo.mintemp_c;\n  $queriedCity.textContent = weatherInfo.city;\n  $queriedCountry.textContent = weatherInfo.country;\n}\n\nfunction editWeatherBackgroundDisplay(weatherInfo) {\n  const backgroundElement = cachedDOM.$mainContainer;\n\n  const isDay = weatherInfo.is_day;\n  const weatherDescription = weatherInfo.currentCondition.text.toLowerCase();\n\n  switch (true) {\n    case isDay === 1 && weatherDescription.includes(\"sunny\"):\n      backgroundElement.style.backgroundImage = `url(${_resources_sunnyDay_jpg__WEBPACK_IMPORTED_MODULE_2__})`;\n      break;\n    default:\n      console.log(\"No\");\n  }\n}\n\nasync function outputWeather(eventMsg, infoPromise) {\n  const weatherInfo = await infoPromise;\n\n  editDisplayedWeatherInfo(weatherInfo);\n\n  editWeatherBackgroundDisplay(weatherInfo);\n}\n\nfunction hideHomepage() {\n  homePage.remove();\n  mainPage.show();\n}\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.outputAutocompleteEvent, outputAutocomplete);\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.emptyLocationQuery, hideAutocomplete);\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.removeHomePage, hideHomepage);\n\npubsub_js__WEBPACK_IMPORTED_MODULE_0___default().subscribe(_eventsHandler__WEBPACK_IMPORTED_MODULE_1__.pubsubEventNames.outputWeather, outputWeather);\n\n\n//# sourceURL=webpack://webpack_eslint_prettier_template/./src/outputHandler.js?");
+
+/***/ }),
+
+/***/ "./src/resources/sunnyDay.jpg":
+/*!************************************!*\
+  !*** ./src/resources/sunnyDay.jpg ***!
+  \************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("module.exports = __webpack_require__.p + \"a48ed727faa35f1b2a93.jpg\";\n\n//# sourceURL=webpack://webpack_eslint_prettier_template/./src/resources/sunnyDay.jpg?");
 
 /***/ })
 
@@ -139,6 +150,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pubs
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -162,6 +185,29 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pubs
 /******/ 			if (!module.children) module.children = [];
 /******/ 			return module;
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
