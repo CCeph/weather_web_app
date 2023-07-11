@@ -78,7 +78,6 @@ textarea {
 }
 
 #locationForm > :is(input, button) {
-  border: 1px solid black;
   box-shadow: none;
   height: 2rem;
 }
