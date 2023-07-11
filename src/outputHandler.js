@@ -1,6 +1,7 @@
 import PubSub from "pubsub-js";
 import { pubsubEventNames } from "./eventsHandler";
 import sunnyDay from "./resources/sunnyDay.jpg";
+import cloudyNight from "./resources/cloudyNight.jpg";
 
 // Cache DOM Elements
 function createDOMCache() {
@@ -114,6 +115,7 @@ function editWeatherBackgroundDisplay(weatherInfo) {
       break;
 
     case isDay === 0:
+      $mainContainer.style.backgroundImage = `url(${cloudyNight})`;
       break;
     default:
       console.log("No");
