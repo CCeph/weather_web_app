@@ -14,6 +14,9 @@ function createDOMCache() {
   const $queriedCity = document.querySelector("[data-city]");
   const $queriedCountry = document.querySelector("[data-country]");
   const $mainContainer = document.querySelector("[data-mainContainer]");
+  const $backgroundContainer = document.querySelector("[data-background]");
+  const $rightPanel = document.querySelector("[data-rightPanel]");
+  const $secondSearchBar = document.querySelector("[data-secondLocation");
   return {
     $autocomplete,
     $location,
@@ -25,6 +28,9 @@ function createDOMCache() {
     $queriedCity,
     $queriedCountry,
     $mainContainer,
+    $backgroundContainer,
+    $rightPanel,
+    $secondSearchBar,
   };
 }
 
@@ -90,14 +96,21 @@ function editDisplayedWeatherInfo(weatherData) {
 }
 
 function editWeatherBackgroundDisplay(weatherInfo) {
-  const backgroundElement = cachedDOM.$mainContainer;
+  const {
+    $mainContainer,
+    $backgroundContainer,
+    $rightPanel,
+    $secondSearchBar,
+  } = cachedDOM;
 
   const isDay = weatherInfo.is_day;
   const weatherDescription = weatherInfo.currentCondition.text.toLowerCase();
 
   switch (true) {
     case isDay === 1 && weatherDescription.includes("sunny"):
-      backgroundElement.style.backgroundImage = `url(${sunnyDay})`;
+      $mainContainer.style.backgroundImage = `url(${sunnyDay})`;
+      $rightPanel.style.backgroundColor = "rgb(15 71 99 / 59%)";
+      $secondSearchBar.style.borderBottom = "1px solid #F1F1F1";
       break;
     default:
       console.log("No");
