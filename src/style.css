@@ -285,3 +285,7 @@ h1 sup {
 .main-container.cloudy-day {
   background-image: url("./resources/cloudyDay.jpg");
 }
+
+.right-panel.cloudy-day p {
+  color: white;
+}
