@@ -99,6 +99,8 @@ function removeCurrentWeatherTheme(themeElementsArray) {
     element.classList.remove("sunny-day");
     element.classList.remove("cloudy-night");
     element.classList.remove("night");
+    element.classList.remove("clear-night");
+    element.classList.remove("cloudy-day");
   });
 }
 
@@ -141,19 +143,23 @@ function editWeatherBackgroundDisplay(weatherInfo) {
         weatherDescription.includes("drizzle")):
       addWeatherTheme(weatherThemeElements, "rainy-day");
       break;
-    case isDay === 1 && weatherDescription.includes("cloudy"):
-      console.log("Add cloudy day image");
+    case isDay === 1 &&
+      (weatherDescription.includes("cloudy") ||
+        weatherDescription.includes("overcast")):
+      addWeatherTheme(weatherThemeElements, "cloudy-day");
       break;
     case isDay === 0 &&
       (weatherDescription.includes("rain") ||
         weatherDescription.includes("drizzle")):
       addWeatherTheme(weatherThemeElements, "rainy-night");
       break;
-    case isDay === 0 && weatherDescription.includes("cloudy"):
-      console.log("Add cloudy night image");
+    case isDay === 0 &&
+      (weatherDescription.includes("cloudy") ||
+        weatherDescription.includes("overcast")):
+      addWeatherTheme(weatherThemeElements, "cloudy-night");
       break;
     case isDay === 0:
-      addWeatherTheme(weatherThemeElements, "cloudy-night");
+      addWeatherTheme(weatherThemeElements, "clear-night");
       break;
     default:
       console.log("No matching theme found");
