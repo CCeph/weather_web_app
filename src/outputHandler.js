@@ -141,10 +141,16 @@ function editWeatherBackgroundDisplay(weatherInfo) {
         weatherDescription.includes("drizzle")):
       addWeatherTheme(weatherThemeElements, "rainy-day");
       break;
+    case isDay === 1 && weatherDescription.includes("cloudy"):
+      console.log("Add cloudy day image");
+      break;
     case isDay === 0 &&
       (weatherDescription.includes("rain") ||
         weatherDescription.includes("drizzle")):
       addWeatherTheme(weatherThemeElements, "rainy-night");
+      break;
+    case isDay === 0 && weatherDescription.includes("cloudy"):
+      console.log("Add cloudy night image");
       break;
     case isDay === 0:
       addWeatherTheme(weatherThemeElements, "cloudy-night");
