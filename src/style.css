@@ -252,7 +252,7 @@ h1 sup {
   justify-content: space-between;
 }
 
-.weather-details > p > span {
+.weather-details > p > span.weather-value {
   color: white;
   font-weight: bold;
 }
