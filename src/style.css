@@ -23,6 +23,7 @@ textarea {
 
 :root {
   --clickedButtonShadow: inset 0px 0px 10px 3px grey;
+  --lightClickedButtonShadow: inset 0px 0px 8px 1px grey;
   --searchBarRadius: 6px;
   --slingShot: cubic-bezier(1, -0.44, 0.45, 0.88);
   --slideTime: 500ms;
@@ -114,6 +115,10 @@ textarea {
 
 .locationForms > button:active {
   box-shadow: var(--clickedButtonShadow);
+}
+
+#locationForm > button:active {
+  box-shadow: var(--lightClickedButtonShadow);
 }
 
 .autocomplete {
