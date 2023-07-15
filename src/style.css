@@ -231,6 +231,11 @@ h1 sup {
 
 .right-panel p {
   color: rgb(207, 207, 207);
+  align-items: baseline;
+}
+
+.right-panel p > span.weather-value {
+  font-size: 1.3rem;
 }
 
 .weather-details {
