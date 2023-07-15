@@ -60,6 +60,10 @@ function hideAutocomplete(msg, autocompleteElement) {
   autocompleteElement.classList.remove("active");
 }
 
+function blurSearchBar() {
+  document.activeElement.blur();
+}
+
 const homePage = {
   remove() {
     const homeWrapper = cachedDOM.$locationFormWrapper;
@@ -171,6 +175,8 @@ function editWeatherBackgroundDisplay(weatherInfo) {
 
 async function outputWeather(eventMsg, infoPromise) {
   const weatherInfo = await infoPromise;
+
+  blurSearchBar();
 
   editDisplayedWeatherInfo(weatherInfo);
 
