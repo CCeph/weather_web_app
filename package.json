@@ -6,17 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "publish": "git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
   "author": "Yousef Elsisy (https://github.com/CCeph)",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "eslint": "^8.42.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "prettier": "2.8.8",
+    "style-loader": "^3.3.3",
     "webpack": "^5.87.0",
     "webpack-cli": "^5.1.4"
   },
