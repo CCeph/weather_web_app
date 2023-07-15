@@ -78,6 +78,13 @@ const mainPage = {
   },
 };
 
+function checkForKyivOutputSpelling(locationName) {
+  if (locationName.toLowerCase().includes("kiev")) {
+    return "Kyiv";
+  }
+  return locationName;
+}
+
 function editDisplayedWeatherInfo(weatherData) {
   const weatherInfo = weatherData;
 
@@ -89,6 +96,8 @@ function editDisplayedWeatherInfo(weatherData) {
     $queriedCity,
     $queriedCountry,
   } = cachedDOM;
+
+  weatherInfo.city = checkForKyivOutputSpelling(weatherInfo.city);
 
   $currentTemp.textContent = weatherInfo.currentTemp;
   $feelsLikeTemp.textContent = weatherInfo.feelslike_c;

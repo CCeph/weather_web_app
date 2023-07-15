@@ -26,14 +26,23 @@ function createDOMCache() {
 
 const cachedDOM = createDOMCache();
 
+function checkForKyivInputSpelling(locationName) {
+  if (locationName.toLowerCase().includes("kyiv")) {
+    return "kiev";
+  }
+  return locationName;
+}
+
 function listenToLocationForm(locationForm) {
   locationForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const formOfInterest = e.target;
     const searchBar = formOfInterest.elements[0];
-    const locationOfInterest = searchBar.value;
+    let locationOfInterest = searchBar.value;
 
     if (locationOfInterest.length >= 3) {
+      locationOfInterest = checkForKyivInputSpelling(locationOfInterest);
+
       PubSub.publish(pubsubEventNames.getWeatherForLocation, [
         locationOfInterest,
         formOfInterest,
