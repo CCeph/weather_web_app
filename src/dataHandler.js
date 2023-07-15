@@ -15,7 +15,7 @@ const cachedDOM = createDOMCache();
 async function getDailyWeather(location) {
   try {
     const response = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=9d7451824d394c3aafd101313230506&q=${location}`,
+      `https://api.weatherapi.com/v1/forecast.json?key=9d7451824d394c3aafd101313230506&q=${location}`,
       { mode: "cors" }
     );
     handleStatusErrors(response);
