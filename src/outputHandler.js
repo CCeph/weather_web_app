@@ -143,7 +143,7 @@ function editWeatherBackgroundDisplay(weatherInfo) {
       break;
 
     case isDay === 1 &&
-      (weatherDescription.includes("rainy") ||
+      (weatherDescription.includes("rain") ||
         weatherDescription.includes("drizzle")):
       addWeatherTheme(weatherThemeElements, "rainy-day");
       break;
