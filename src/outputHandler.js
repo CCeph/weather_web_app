@@ -148,6 +148,9 @@ function editWeatherBackgroundDisplay(weatherInfo) {
         weatherDescription.includes("overcast")):
       addWeatherTheme(weatherThemeElements, "cloudy-day");
       break;
+    case isDay === 1:
+      console.log("Default background. No matching background found.");
+      break;
     case isDay === 0 &&
       (weatherDescription.includes("rain") ||
         weatherDescription.includes("drizzle")):
