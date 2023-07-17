@@ -12,6 +12,9 @@ Make a sick website.
 
 The API keys are shown to the public. None of the API keys are worth anything, so it is fine.
 
+Sometimes, the autocomplete and weather APIs do not agree on the location, so the
+suggested location will result in retrieving the weather in another place. I can't think of a way to make this bug go away without changing the APIs used, so unfortunately it has to stay for now.
+
 ## Things to Implement
 
 What happens when a country name is inputted instead of a city name? Eg. Egypt
