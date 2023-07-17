@@ -114,6 +114,8 @@ function removeCurrentWeatherTheme(themeElementsArray) {
     element.classList.remove("night");
     element.classList.remove("clear-night");
     element.classList.remove("cloudy-day");
+    element.classList.remove("rainy-day");
+    element.classList.remove("rainy-night");
   });
 }
 
